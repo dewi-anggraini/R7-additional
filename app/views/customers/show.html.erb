@@ -1,10 +1,44 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @customer %>
+<h1>Customer</h1>
 
-<div>
-  <%= link_to "Edit this customer", edit_customer_path(@customer) %> |
-  <%= link_to "Back to customers", customers_path %>
+<div id="customers">
+ <h1><%= @customer.full_name %></h1>
 
-  <%= button_to "Destroy this customer", @customer, method: :delete %>
+ <!-- to show orders only associated to the specific customer -->
+
+  <% if @customer.orders.any? %>
+   <table>
+    <thead>
+      <tr>
+       <th>Order id</th>
+       <th>Show</th>
+       <th>Edit</th>
+       <th>Destroy</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+
+     <% @customer.orders.each do |order| %>
+
+     <tr>
+      <td>
+      <%= order.id %>
+      </td>
+
+      <td>  <%= link_to "Show", order %></td>
+      <td>  <%= link_to "Edit", edit_order_path(order) %></td>  
+      <td>  <%= button_to "Destroy", order_path(order), method: :delete, data: { confirm: 'Are you sure?' }%></td>     
+     </tr>
+     <% end %>
+
+    </tbody>
+
+   </table>
+  <% else %>
+    <p>No orders found.</p>
+  <% end %>
 </div>
+
+<%= link_to "Back to customers", customers_path %>
