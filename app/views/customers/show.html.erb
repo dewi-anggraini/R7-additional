@@ -1,4 +1,3 @@
-<p style="color: green"><%= notice %></p>
 
 <h1>Customer</h1>
 
@@ -14,30 +13,25 @@
        <th>Order id</th>
        <th>Show</th>
        <th>Edit</th>
-       <th>Destroy</th>
+       <th>Delete</th>
       </tr>
     </thead>
     
     <tbody>
 
      <% @customer.orders.each do |order| %>
-
-     <tr>
-      <td>
-      <%= order.id %>
-      </td>
-
-      <td>  <%= link_to "Show", order %></td>
-      <td>  <%= link_to "Edit", edit_order_path(order) %></td>  
-      <td>  <%= button_to "Destroy", order_path(order), method: :delete, data: { confirm: 'Are you sure?' }%></td>     
-     </tr>
-     <% end %>
-
+      <tr>
+        <td>
+        <%= order.id %>
+        </td>
+        <td> <%= link_to "Show", order, class: "btn btn-primary" %></td>
+        <td> <%= link_to "Edit", edit_order_path(order), class: "btn btn-primary" %></td>      
+        <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal-<%= @customer.id%>">Delete</td>
+        <td><%= render partial: "customer", locals: {customer: @customer} %></td>
+        </tr> 
+     <% end %>   
     </tbody>
-
    </table>
-  <% else %>
-    <p>No orders found.</p>
   <% end %>
 </div>
 

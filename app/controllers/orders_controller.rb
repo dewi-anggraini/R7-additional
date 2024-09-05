@@ -30,7 +30,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     if @order.save
-      flash.notice = "The order record was created successfully."
+      flash.alert = "The order record was created successfully."
       redirect_to @order
     else
       render :new, status: :unprocessable_entity
@@ -52,7 +52,7 @@ class OrdersController < ApplicationController
   #defining method for updating order
   def update
     if @order.update(order_params)
-      flash.notice = "The order record was updated successfully."
+      flash.alert = "The order record was updated successfully."
       redirect_to @order
     else
       render :edit, status: :unprocessable_entity

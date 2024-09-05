@@ -14,6 +14,33 @@
  *= require_self
  */
 
+ @import "bootstrap";
+ @import "font-awesome";
+
+ :root {
+  --bs-body-bg: #e7a3f0;
+ }
+
  .my_alert {
     color: red;
   }
+
+  @font-face {
+   font-family: 'Super Chips';
+   src: url('Super Chips.ttf');
+ }
+
+ .banner-background {
+    font-family: 'Super Chips';
+    background-image: url('dessert_cake.jpg');
+    background-size: cover;
+    height: 200px;
+ }
+
+ *{
+   font-family: 'Super Chips';
+ }
+ .align-left {
+   margin-left: 0;
+ }
+  
