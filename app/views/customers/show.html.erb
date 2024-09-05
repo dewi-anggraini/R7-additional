@@ -1,0 +1,38 @@
+
+<h1>Customer</h1>
+
+<div id="customers">
+ <h1><%= @customer.full_name %></h1>
+
+ <!-- to show orders only associated to the specific customer -->
+
+  <% if @customer.orders.any? %>
+   <table>
+    <thead>
+      <tr>
+       <th>Order id</th>
+       <th>Show</th>
+       <th>Edit</th>
+       <th>Delete</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+
+     <% @customer.orders.each do |order| %>
+      <tr>
+        <td>
+        <%= order.id %>
+        </td>
+        <td> <%= link_to "Show", order, class: "btn btn-primary" %></td>
+        <td> <%= link_to "Edit", edit_order_path(order), class: "btn btn-primary" %></td>      
+        <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal-<%= @customer.id%>">Delete</td>
+        <td><%= render partial: "customer", locals: {customer: @customer} %></td>
+        </tr> 
+     <% end %>   
+    </tbody>
+   </table>
+  <% end %>
+</div>
+
+<%= link_to "Back to customers", customers_path %>

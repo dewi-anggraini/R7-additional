@@ -1,0 +1,37 @@
+
+<div class="container-fluid mt-2">
+ <div class="row">
+  <div class="col-lg table-responsive">
+   
+    <h1>Customers</h1>
+    <table class="table">
+     <thead>
+        <tr>
+         <th>Full Name</th>
+         <th>Number of Orders</th>
+         <th>Actions</th>
+        </tr>
+     </thead> 
+   <tbody>
+
+    <% @customers.each do |customer| %>
+
+      <tr>
+        <td><%= customer.full_name%></td>
+        <td><%= customer.orders.count%></td>
+        <td><%= link_to "Show", customer, class: "btn btn-primary" %></td>
+        <td><%= link_to "Edit", edit_customer_path(customer), class: "btn btn-primary" %></td> 
+        <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal-<%= customer.id%>">Delete</td>  
+      </tr>
+      <%= render partial: "customers/deleteModal", locals: {customer: customer} %>     
+    <% end %>
+   </tbody>
+  </table>
+
+<%= link_to "New customer", new_customer_path, class: "btn btn-success" %>
+  </div>
+ </div>
+</div>
+
+
+
